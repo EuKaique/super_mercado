@@ -1,0 +1,51 @@
+{% extends 'auth/layout.html.twig' %}
+{% block title %} Login {% endblock %}
+{% block body %}
+    <main class="auth-container">
+        {% if erro %}
+            <div>{{ erro.messageKey|trans(erro.messageData, 'security') }}</div>
+        {% endif %}
+        <div class="container">
+            <div>
+                <div>
+                    <div class="logo-container">
+                        <img src="assets/images/logo.png" alt="logo" />
+                    </div>
+                </div>
+                <div>
+                    <form action="{{ path('login') }}" method="post">
+                        <input type="hidden" name="_target_path" value="/">
+                        <div class="form-container">
+                            <div>
+                                <input 
+                                    type="email" 
+                                    class="form-input" 
+                                    id="username" 
+                                    name="_username"
+                                    placeholder="Digite seu e-mail"
+                                />
+                            </div>
+                            <div>
+                                <input 
+                                    type="password" 
+                                    class="form-input" 
+                                    id="password" 
+                                    name="_password"
+                                    placeholder="Digite sua senha"
+                                />
+                            </div>
+                        <div>
+                            <p>Ainda não tem cadastro?
+                               <a href="/register">Cadastre-se</a> 
+                            </p>
+                        <div class="flex-container">
+                            <div>
+                                <button type="submit" class="btn-submit">Entrar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'auth/layout.html.twig' %}
+{% block title %} Cadastre-se {% endblock %}
+{% block body %}
+    <main class="auth-container">
+        <div class="container">
+            <div>
+                <div>
+                    <div class="logo-container">
+                        <img src="assets/images/logo.png" alt="logo" />
+                    </div>
+                </div>
+                <div>
+                    {{ form_start(registrationForm) }}
+                        {{ form_errors(registrationForm) }}
+                        <div class="form-container">
+                            <div>
+                                {{ form_widget(registrationForm.name, {'attr': {'class': 'form-input', 'placeholder': 'Digite seu nome'}}) }}
+                                {{ form_errors(registrationForm.name) }}
+                            </div>
+                            <div>
+                                {{ form_widget(registrationForm.email, {'attr': {'class': 'form-input', 'placeholder': 'Digite seu e-mail'}}) }}
+                                {{ form_errors(registrationForm.email) }}
+                            </div>
+                            <div>
+                                {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-input', 'placeholder': 'Digite uma senha'}}) }}
+                                {{ form_errors(registrationForm.plainPassword) }}
+                            </div>
+                            <div class="label-container">
+                                {{ form_row(registrationForm.agreeTerms, {'label': 'Aceita os termos e condições?'}) }}
+                                {{ form_errors(registrationForm.agreeTerms) }}
+                            </div>
+                        <div>
+                        <div class="flex-container">
+                            <div>
+                                <button type="submit" class="btn-submit">Cadastrar</button>
+                            </div>
+                        </div>
+                     {{ form_end(registrationForm) }}
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
