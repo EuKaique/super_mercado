@@ -3,3 +3,9 @@
 home:
     path: /
     controller: App\Controller\HomeController::index
+logout:
+    path: /logout
+    methods: GET
+register:
+    path: /register
+    controller: App\Controller\RegistrationController::register

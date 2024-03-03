@@ -1,0 +1,57 @@
+<header>
+    <div class="logo-container">
+        <a href="/">
+            <img src={{ asset('assets/images/logo.png') }} alt="Logo" />
+        </a>
+    </div>
+    <div class="search-container">
+        <form method="post">
+            <input type="text" max-length="255" min-length="3" placeholder="Procure seu produto aqui" />
+            <button type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
+    </div>
+    <div class="user-container">
+        <div title="Favoritos">
+            <i class="fa-solid fa-heart"></i>
+        </div>
+        <div title="Carrinho">
+            <i class="fa-solid fa-cart-shopping"></i>
+        </div>
+        <div title="Minha conta">
+            <button onclick="openDropdown()">
+                <i class="fa-solid fa-user"></i>
+            </button>
+            <ul class="dropdown-container">
+                {% if is_granted('ROLE_USER') %}
+                    <li>
+                        <a href="/dashboard">
+                            <i class="fa-solid fa-right-to-bracket"></i>
+                            Acessar painel
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('logout') }}">
+                            <i class="fa-solid fa-door-open"></i>
+                            Sair
+                        </a>
+                    </li>
+                {% else %}
+                    <li>
+                        <a href="{{ path('login') }}">
+                            <i class="fa-solid fa-right-to-bracket"></i>
+                            Fazer Login
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ path('register') }}">
+                            <i class="fa-regular fa-id-card"></i>
+                            Cadastrar-se
+                        </a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</header>
