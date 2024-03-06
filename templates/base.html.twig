@@ -10,10 +10,13 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <!-- Slick Carousel CSS -->
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
         <!-- Styles -->
         <link rel="stylesheet" href={{ asset('assets/css/global.css') }}>
         <link rel="stylesheet" href={{ asset('assets/css/components/header.css') }}>
         <link rel="stylesheet" href={{ asset('assets/css/components/navigation.css') }}>
+        <link rel="stylesheet" href={{ asset('assets/css/components/slider.css') }}>
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -27,5 +30,10 @@
         {% block body %}{% endblock %}
 
         <script src="{{asset('assets/js/header.js')}}"></script>
+        <!-- JQuery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <!-- Slick Carousel JS -->
+        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <script src="{{asset('assets/js/slider.js')}}"></script>
     </body>
 </html>

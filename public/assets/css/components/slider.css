@@ -1,0 +1,74 @@
+.slide-images{
+    width: 100%;
+    height: 50vh;
+    position: relative;
+}
+.slide-images > div{
+    width: 100%;
+    height: 100%;
+    
+    img{
+        min-width: 100%;
+        object-position: center;
+        object-fit: cover;
+    }
+}
+.slide-images > ul{
+    position: absolute;
+    top: 26.5rem;
+    left: 45%;
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    align-items: center;
+}
+.slide-images > ul > li > button{
+    cursor: pointer;
+}
+.slick-prev,
+.slick-next {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    background-color: #dfdfdf;
+    padding-top: 0.25rem;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 12rem;
+    z-index: 99999;
+    cursor: pointer;
+}
+.slick-prev:hover,
+.slick-next:hover{
+    color: #dfdfdf;
+    background-color: #333;
+    transition: 0.2s;
+}
+.slick-prev{
+    left: 1rem;
+}
+.slick-next{
+    right: 1rem;
+}
+.slick-dots li button {
+    font-size: 8px;
+    color: #eee;
+    background-color: transparent;
+    border: 1px solid #eee;
+    border-radius: 30%;
+    width: 15px;
+    height: 15px;
+}
+.slick-dots li.slick-active button {
+    background-color: #eee;
+    color: #eee;
+}
+#slick-slide-control00,
+#slick-slide-control01,
+#slick-slide-control02,
+#slick-slide-control03{
+    font-size: 0;
+}
