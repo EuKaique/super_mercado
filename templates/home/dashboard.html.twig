@@ -4,5 +4,9 @@
 
 {% block body %}
     {% include 'components/header.html.twig' %}
-    <h1 style="margin-top: 10%">Dashboard</h1>
+    {% include 'components/aside-dashboard.html.twig' %}
+    <div style="position: absolute; top: 17%; left: 45%">
+        <img src="{{asset('assets/images/logo.png')}}" alt="Super mercado" />
+        <h2 style="margin-left: 0">Gerencie o sistema pelo menu ao lado</h2>
+    </div>
 {% endblock %}

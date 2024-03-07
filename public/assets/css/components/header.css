@@ -1,8 +1,8 @@
 header{
     position: fixed;
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    column-gap: 14rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     @media (min-width: 2560px) {
         .search-container {

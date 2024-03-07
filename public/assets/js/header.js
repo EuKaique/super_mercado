@@ -2,7 +2,7 @@ function openDropdown() {
     document.querySelector('.dropdown-container').classList.toggle('active');
 }
 
-document.addEventListener('click', function(event) {
+document.addEventListener('click', (event) => {
     var dropdown = document.querySelector('.dropdown-container');
     var button = document.querySelector('.user-container button');
 
@@ -10,3 +10,13 @@ document.addEventListener('click', function(event) {
         dropdown.classList.remove('active');
     }
 });
+
+function router(){
+    var getRoute = window.location.pathname;
+    
+    if (getRoute !== '/'){
+        document.querySelector('.search-container').style.display = 'none';
+    }
+
+}
+router()

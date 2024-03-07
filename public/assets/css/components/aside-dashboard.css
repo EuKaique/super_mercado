@@ -1,0 +1,30 @@
+aside{
+    margin-top: 5rem;
+    width: 14rem;
+    height: 100vh;
+    background-color: #9A031E;
+}
+aside > ul{
+   display: flex;
+   flex-direction: column;
+   padding: 1rem;
+}
+aside > ul > li{
+    line-height: 3rem;
+}
+aside > ul > li > a{
+    color: #fff;
+    text-decoration: none;
+}
+aside > ul > li > a > i{
+    margin-top: 1rem;
+}
+aside > ul > li > a:hover{
+    font-weight: 600;
+    transition: 0.2s;
+}
+aside > ul > .active-route > a{
+    font-weight: 600;
+    border-bottom: 1px solid #fff;
+    padding-bottom: 0.5rem;
+}
