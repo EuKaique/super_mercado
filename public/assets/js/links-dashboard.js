@@ -1,14 +1,12 @@
-const getRouteProfile = window.location.pathname.split('/')[1].startsWith('profile');
-const getRouteFood = window.location.pathname.split('/')[1].startsWith('food');
+const routes = ['profile', 'food', 'homeappliances', 'electronics', 'tools', 'games', 'computing', 'otherproducts'];
 
-if(getRouteProfile) {
-    document.getElementById('profile').classList.add('active-route')
-} else {
-    document.getElementById('profile').classList.remove('active-route')
-}
-
-if(getRouteFood) {
-    document.getElementById('food').classList.add('active-route')
-} else {
-    document.getElementById('food').classList.remove('active-route')
-}
+routes.forEach(route => {
+    const element = document.getElementById(route);
+    const isActiveRoute = window.location.pathname.split('/')[1].startsWith(route);
+    
+    if (isActiveRoute) {
+        element.classList.add('active-route');
+    } else {
+        element.classList.remove('active-route');
+    }
+});

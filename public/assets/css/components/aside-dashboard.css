@@ -25,6 +25,8 @@ aside > ul > li > a:hover{
 }
 aside > ul > .active-route > a{
     font-weight: 600;
-    border-bottom: 1px solid #fff;
-    padding-bottom: 0.5rem;
+    border-radius: 0.4rem;
+    padding: 0.5rem;
+    background-color: #fff;
+    color: #9A031E;
 }

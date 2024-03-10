@@ -5,7 +5,18 @@
 {% block body %}
     {% include 'components/header.html.twig' %}
     {% include 'components/aside-dashboard.html.twig' %}
-    <div style="position: absolute;top: 12%;left: 20%;">
-        <div>Meu perfil</div>
+    <div class="profile-container">
+        <div class="profile">
+            <div>
+                <h2>{{ user.name }}</h2>
+                <p><b>E-mail:</b> <span>{{ user.email }}</span></p>
+            </div>
+            <div>
+                Imagem
+            </div>
+        </div>
+        <form>
+            Formulário de atualização
+        </form>
     </div>
 {% endblock %}

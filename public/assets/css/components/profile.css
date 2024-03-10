@@ -1,0 +1,15 @@
+.profile-container{
+    width: 75%;
+    position: absolute;
+    top: 15%;
+    left: 20%;
+}
+.profile{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.profile > div:first-child > h2{
+    margin-bottom: 2rem;
+}
