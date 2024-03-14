@@ -42,6 +42,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $name;
 
+    /**
+     * @ORM\Column(type="string", length=20)
+     */
+    private $phone;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $profile_image;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -139,6 +149,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getPhone(): ?string
+    {
+        return $this->phone;
+    }
+
+    public function setPhone(string $phone): self
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    public function getProfileImage(): ?string
+    {
+        return $this->profile_image;
+    }
+
+    public function setProfileImage(string $profile_image): self
+    {
+        $this->profile_image = $profile_image;
 
         return $this;
     }
