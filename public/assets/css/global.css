@@ -6,6 +6,11 @@
     outline: none;
     font-family: "Montserrat", sans-serif;
 }
+.container{
+    position: absolute;
+    top: 12%;
+    left: 20%;
+}
 form > .form-class > label{
     display: block;
     font-weight: 600;
@@ -63,4 +68,98 @@ form > .form-class > button:hover{
     padding: 1rem;
     width: 100%;
     border-radius: 0.4rem;
+}
+.flex-between{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 60rem;
+
+    @media (min-width: 2560px) {
+        min-width: 120rem;
+        
+    }
+}
+.btn-cad{
+    background-color: #65B741;
+    color: #fff;
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-back{
+    background-color: #DDDDDD;
+    color: #fff;
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.75rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+.btn-cad:hover{
+    transition: 0.2s;
+    background-color: #578b41;
+}
+.btn-back:hover{
+    transition: 0.2s;
+    background-color: #CCCCCC;
+}
+.table-class{
+    margin-top: 2rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #ccc;
+}
+
+th, td {
+    padding: 8px;
+    text-align: center;
+}
+
+thead {
+    background-color: #f2f2f2;
+    border: 1px solid #ccc;
+}
+
+tbody tr:nth-child(even) {
+    border: 1px solid #ccc;
+}
+
+tbody > tr:hover{
+    background-color: #F2F2F2;
+    transition: 0.2s;
+}
+tbody > tr > td > img{
+    width: 5rem;
+    height: 2rem;
+}
+tbody > tr > td > a{
+    text-decoration: none;
+    padding: 6px;
+    border-radius: 0.4rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+}
+tbody > tr > td > a:first-child{
+    background-color: #416ab7;
+    color: #fff;
+}
+tbody > tr > td > a:last-child{
+    background-color: #C42323;
+    color: #fff;
+    margin-left: 0.5rem;
+}
+.pagination{
+    margin-top: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }

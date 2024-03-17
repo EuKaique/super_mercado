@@ -5,7 +5,60 @@
 {% block body %}
     {% include 'components/header.html.twig' %}
     {% include 'components/aside-dashboard.html.twig' %}
-    <div style="position: absolute;top: 12%;left: 20%;">
-        <div>Alimentos</div>
+    <div class="container">
+        <div class="flex-between">
+            <div>
+                <h2>Alimentos</h2>
+            </div>
+            <div>
+                <button class="btn-cad" onclick="navigateTo('food_form')">Cadastrar</button>
+            </div>
+        </div>
+        {% if message is not null %}
+            <div class="message-class" style="margin-top: 2rem">
+                <h5>{{ message }}</h5>
+            </div>
+        {% endif %}
+        <div class="table-class">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID<th>
+                        <th>imagem<th>
+                        <th>nome<th>
+                        <th>preço</th>
+                        <th>ações<th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for food in foods %}
+                        <tr>
+                            <td>{{ food.id }}<td>
+                            <td>
+                                <img 
+                                    src="{{ asset('images/food_images/' ~ food.imagem) }}"
+                                    alt="{{ food.nome }}"
+                                >
+                            <td>
+                            <td>{{ food.nome }}<td>
+                            <td>R$ {{ food.preco|number_format(2, ',', '.') }}</td>
+                            <td>
+                                <a href="{{ path('food_edit', {'id': food.id}) }}">Editar</a>
+                                <a href="{{ path('food_delete', {'id': food.id}) }}">Excluir</a>
+                            <td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div class="pagination">
+            <div class="pagination-content">
+                <button>Voltar tudo</button>
+                <button>Voltar</button>
+                <button>Páginas</button>
+                <button>Avançar</button>
+                <button>Avançar tudo</button>
+            </div>
+        </div>
     </div>
 {% endblock %}

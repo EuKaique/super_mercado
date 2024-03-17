@@ -6,6 +6,7 @@
 parameters:
 
     profile_images: '%kernel.project_dir%/public/images/profile_images'
+    food_images: '%kernel.project_dir%/public/images/food_images'
     app_name: 'Super Mercado'
 
 services:

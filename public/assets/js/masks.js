@@ -4,4 +4,10 @@ function phoneMask(input) {
                            .replace(/(\d)(\d{4})$/, "$1-$2");
     input.value = value;
 }
+function moneyMask(input) {
+    var value = input.value.replace(/\D/g, "")
+                           .replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+    input.value = value;
+}
 
