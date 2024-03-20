@@ -39,6 +39,49 @@ class FoodRepository extends ServiceEntityRepository
         }
     }
 
+    public function filterTable(
+        string $nome = null,
+        string $preco = null,
+        int $offset = 0,
+        int $pageSize = 10): array
+    {
+        $qb = $this->createQueryBuilder('f')
+            ->orderBy('f.id', 'DESC')
+            ->setFirstResult($offset)
+            ->setMaxResults($pageSize);
+
+        if ($nome) {
+            $qb->andWhere('f.nome LIKE :nome')
+                ->setParameter('nome', '%' . $nome . '%');
+        }
+
+        if ($preco) {
+            $qb->andWhere('f.preco = :preco')
+                ->setParameter('preco', $preco);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
+
+    public function filterCount(string $nome = null, string $preco = null): int
+    {
+        $qb = $this->createQueryBuilder('f');
+
+        if ($nome) {
+            $qb->andWhere('f.nome LIKE :nome')
+                ->setParameter('nome', '%' . $nome . '%');
+        }
+
+        if ($preco) {
+            $qb->andWhere('f.preco = :preco')
+                ->setParameter('preco', $preco);
+        }
+
+        return $qb->select('COUNT(f.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    }
+
 //    /**
 //     * @return Food[] Returns an array of Food objects
 //     */

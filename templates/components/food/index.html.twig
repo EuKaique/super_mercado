@@ -4,60 +4,92 @@
 
 {% block body %}
     {% include 'components/header.html.twig' %}
-    {% include 'components/aside-dashboard.html.twig' %}
+
     <div class="container">
-        <div class="flex-between">
-            <div>
+
+            {% include 'components/aside-dashboard.html.twig' %}
+        <div>
+            <div class="flex-between">
+                <div>
                 <h2>Alimentos</h2>
-            </div>
-            <div>
+                </div>
+                <div>
                 <button class="btn-cad" onclick="navigateTo('food_form')">Cadastrar</button>
             </div>
         </div>
         {% if message is not null %}
-            <div class="message-class" style="margin-top: 2rem">
-                <h5>{{ message }}</h5>
+                    <div class="message-class" style="margin-top: 2rem">
+                        <h5>{{ message }}</h5>
+                        </div>
+                {% endif %}
+                <div class="filter-table">
+                    <form action="{{path('food_filter')}}" method="POST">
+                        <div>
+                            <input name="nome" type="text" placeholder="Digite o nome do alimento" />
+                        </div>
+                        <div>
+                            <input name="preco" type="text" placeholder="Digite o preço do alimento" />
+                        </div>
+                        <div class="flex-btns">
+                            <button type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i> Buscar
+                        </button>
+                        <button type="button" onclick="navigateTo('food')">
+                            <i class="fa-solid fa-trash"></i> Limpar
+                        </button>
+                    </div>
+                </form>
             </div>
-        {% endif %}
-        <div class="table-class">
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID<th>
-                        <th>imagem<th>
-                        <th>nome<th>
-                        <th>preço</th>
-                        <th>ações<th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for food in foods %}
-                        <tr>
-                            <td>{{ food.id }}<td>
-                            <td>
-                                <img 
-                                    src="{{ asset('images/food_images/' ~ food.imagem) }}"
-                                    alt="{{ food.nome }}"
-                                >
-                            <td>
-                            <td>{{ food.nome }}<td>
-                            <td>R$ {{ food.preco|number_format(2, ',', '.') }}</td>
-                            <td>
-                                <a href="{{ path('food_edit', {'id': food.id}) }}">Editar</a>
-                                <a href="{{ path('food_delete', {'id': food.id}) }}">Excluir</a>
-                            <td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        </div>
-        <div class="pagination">
-            <div class="pagination-content">
-                <button>Voltar tudo</button>
-                <button>Voltar</button>
-                <button>Páginas</button>
-                <button>Avançar</button>
-                <button>Avançar tudo</button>
+            <div class="content">
+                <div class="table-class">
+                    <table>
+                        <thead>
+                                <tr>
+                                    <th>ID<th>
+                                    <th>imagem<th>
+                                    <th>nome<th>
+                                    <th>preço</th>
+                                    <th>ações<th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for food in foods %}
+                                    <tr>
+                                        <td>{{ food.id }}<td>
+                                        <td>
+                                            <img 
+                                                src="{{ asset('images/food_images/' ~ food.imagem) }}"
+                                                alt="{{ food.nome }}"
+                                            >
+                                        <td>
+                                        <td>{{ food.nome }}<td>
+                                        <td>R$ {{ food.preco|number_format(2, ',', '.') }}</td>
+                                        <td>
+                                            <a href="{{ path('food_edit', {'id': food.id}) }}">Editar</a>
+                                            <a href="{{ path('food_delete', {'id': food.id}) }}">Excluir</a>
+                                        <td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% if totalPages > 1 %}
+                            <div class="pagination">
+                                {% if page > 1 %}
+                                    <a class="arrow-class" href="{{ path('food', {'page': page - 1}) }}">
+                                        <i class="fa-solid fa-angle-left"></i>
+                                    </a>
+                                {% endif %}
+                                {% for i in 1..totalPages %}
+                                    <a class="current-page" href="{{ path('food', {'page': i}) }}">{{ i }}</a>
+                                {% endfor %}
+                                {% if page < totalPages %}
+                                    <a class="arrow-class" href="{{ path('food', {'page': page + 1}) }}">
+                                        <i class="fa-solid fa-angle-right"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                </div>
             </div>
         </div>
     </div>

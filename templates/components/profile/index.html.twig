@@ -4,53 +4,58 @@
 
 {% block body %}
     {% include 'components/header.html.twig' %}
-    {% include 'components/aside-dashboard.html.twig' %}
-    <div class="profile-container">
-        <div class="profile">
-            <div>
-                <h2>{{ user.name }}</h2>
-                <p><b>E-mail:</b> <span>{{ user.email }}</span></p>
+    <div class="container">
+        {% include 'components/aside-dashboard.html.twig' %}
+        <div>
+            <div class="profile-container">
+                <div class="profile">
+                    <div>
+                        <h2>{{ user.name }}</h2>
+                        <p><b>E-mail:</b> <span>{{ user.email }}</span></p>
+                    </div>
+                    <div class="profile-image">
+                        <img 
+                            src="{{ asset('images/profile_images/' ~ user.profileImage) }}"
+                            alt="{{ user.name ?? 'Foto'}}"
+                        >
+                    </div>
+                </div>
+                <br />
+                <hr />
+                <br />
+                {% if message is not null %}
+                    <div class="message-class">
+                        <h5>{{ message }}</h5>
+                    </div>
+                {% endif %}
+                <form method="POST" action={{ path('profile_edit') }} enctype="multipart/form-data">
+                    <div class="form-class">
+                        <label for="phone">Celular:</label>
+                        <input 
+                            id="phone"
+                            name="phone" 
+                            type="text" 
+                            placeholder="{{ user.phone ?? 'Digite o número com DDD' }}" 
+                            oninput="phoneMask(this)"
+                            maxlength="15"
+                        />
+                    </div>
+                    <div class="form-class">
+                        <label for="update_photo" class="update_photo">Procurar foto</label>
+                        <input 
+                            id="update_photo"
+                            name="update_photo" 
+                            type="file"
+                            accept=".png, .jpg, .jpeg"
+                            maxlength="1048576" 
+                        />
+                    </div>
+                    <div class="form-class">
+                        <button type="submit">Atualizar</button>
+                    </div>
+                </form>
             </div>
-            <div class="profile-image">
-                <img 
-                    src="{{ asset('images/profile_images/' ~ user.profileImage) }}"
-                    alt="{{ user.name ?? 'Foto'}}"
-                >
-            </div>
+
         </div>
-        <br />
-        <hr />
-        <br />
-        {% if message is not null %}
-            <div class="message-class">
-                <h5>{{ message }}</h5>
-            </div>
-        {% endif %}
-        <form method="POST" action={{ path('profile_edit') }} enctype="multipart/form-data">
-            <div class="form-class">
-                <label for="phone">Celular:</label>
-                <input 
-                    id="phone"
-                    name="phone" 
-                    type="text" 
-                    placeholder="{{ user.phone ?? 'Digite o número com DDD' }}" 
-                    oninput="phoneMask(this)"
-                    maxlength="15"
-                />
-            </div>
-            <div class="form-class">
-                <label for="update_photo" class="update_photo">Procurar foto</label>
-                <input 
-                    id="update_photo"
-                    name="update_photo" 
-                    type="file"
-                    accept=".png, .jpg, .jpeg"
-                    maxlength="1048576" 
-                />
-            </div>
-            <div class="form-class">
-                <button type="submit">Atualizar</button>
-            </div>
-        </form>
     </div>
 {% endblock %}

@@ -2,14 +2,47 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    overflow: hidden;
     outline: none;
     font-family: "Montserrat", sans-serif;
+    list-style: none;
+}
+body{
+    overflow: hidden;
 }
 .container{
-    position: absolute;
-    top: 12%;
-    left: 20%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 14rem 60rem;
+
+    @media (min-width: 2560px) {
+        grid-template-columns: 14rem 125rem;
+    }
+
+    gap: 12rem;
+
+    @media (min-width: 1196px) and (max-width: 1366px) {
+        gap: 2rem;
+    }
+
+    margin-top: 6rem;
+
+    aside{
+        margin-top: -1rem;
+    }
+
+    .content{
+        height: 70vh;
+
+        @media (min-width: 2560px) {
+            height: 80vh;
+        }
+
+        overflow-y: auto;
+
+        .table-class{
+            width: 100%;
+        }
+    }
 }
 form > .form-class > label{
     display: block;
@@ -162,4 +195,91 @@ tbody > tr > td > a:last-child{
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+
+    a{
+        text-decoration: none !important;
+        border-radius: 0.4rem;
+        cursor: pointer;
+        font-size: 0.8rem;
+    }
+    .arrow-class{
+        margin-top: 0.5rem;
+        font-size: 1.25rem;
+        color: #416ab7;
+    }
+    .current-page{
+        background-color: #416ab7;
+        padding: 0.5rem;
+        color: #fff;
+        font-weight: 600;
+    }
+    .current-page:hover{
+        opacity: 0.5;
+        transition: 0.2s;
+    }
+}
+.filter-table > form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    color: #416ab7;
+    font-weight: 600;
+    
+    input{
+        width: 25rem;
+        padding: 0.4rem;
+        border-radius: 0.4rem;
+        border: 1px solid #ccc;
+
+        @media (min-width: 2560px) {
+            width: 55rem;   
+        }
+    }
+
+    input:focus,
+    input:hover{
+        border: 1px solid #416ab7;
+    }
+
+    button[type="submit"]{
+        background-color: #416ab7;
+        color: #fff;
+        border: none;
+        border-radius: 0.4rem;
+        padding: 0.5rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+
+    }
+    button[type="submit"]:hover{
+        background-color: #365897;
+        transition: 0.2s;
+    }
+
+    button[type="button"]{
+        color: #416ab7;
+        background-color: #fff;
+        border: none;
+        border-radius: 0.4rem;
+        padding: 0.5rem;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+
+    }
+    button[type="button"]:hover{
+        color: #365897;
+        transition: 0.2s;
+    }
+    .flex-btns{
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
 }

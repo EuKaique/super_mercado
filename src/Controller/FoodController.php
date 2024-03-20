@@ -9,17 +9,67 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Routing\Annotation\Route;
+use Knp\Component\Pager\PaginatorInterface;
 
 class FoodController extends AbstractController
 {
     /**
      * @Route("/food", name="food")
      */
-    public function index(): Response
+    public function index(Request $request): Response
     {
+        $entityManager = $this->getDoctrine()->getManager();
+        $foodsRepository = $entityManager->getRepository(Food::class);
+    
+        $page = $request->query->getInt('page', 1);
+        $pageSize = 10;
+    
+        $offset = ($page - 1) * $pageSize;
+    
+        $foods = $foodsRepository->createQueryBuilder('f')
+            ->orderBy('f.id', 'DESC')
+            ->setFirstResult($offset)
+            ->setMaxResults($pageSize)
+            ->getQuery()
+            ->getResult();
+    
+        $totalFoods = $foodsRepository->createQueryBuilder('f')
+            ->select('COUNT(f.id)')
+            ->getQuery()
+            ->getSingleScalarResult();
+    
+        $totalPages = ceil($totalFoods / $pageSize);
+    
         return $this->render('components/food/index.html.twig', [
             'controller_name' => 'FoodController',
-            'foods' => $this->getDoctrine()->getRepository(Food::class)->findAll(),
+            'foods' => $foods,
+            'page' => $page,
+            'totalPages' => $totalPages,
+            'message' => $this->get('session')->getFlashBag()->get('success')[0] ?? null
+        ]);
+    }
+    /**
+     * @Route("/food_filter", name="food_filter")
+     */
+    public function filter(Request $request, FoodRepository $foodRepository): Response
+    {
+        $nome = $request->request->get('nome');
+        $preco = $request->request->get('preco');
+        $page = $request->request->get('page', 1);
+
+        $pageSize = 10;
+        $offset = ($page - 1) * $pageSize;
+
+        $foods = $foodRepository->filterTable($nome, $preco, $offset, $pageSize);
+
+        $totalFoods = $foodRepository->filterCount($nome, $preco);
+        $totalPages = ceil($totalFoods / $pageSize);
+
+        return $this->render('components/food/index.html.twig', [  
+            'controller_name' => 'FoodController',
+            'foods' => $foods,
+            'page' => $page,
+            'totalPages' => $totalPages,
             'message' => $this->get('session')->getFlashBag()->get('success')[0] ?? null
         ]);
     }
