@@ -4,8 +4,91 @@
 
 {% block body %}
     {% include 'components/header.html.twig' %}
-    {% include 'components/aside-dashboard.html.twig' %}
     <div class="container">
-        <div>Eletro domésticos</div>
+        {% include 'components/aside-dashboard.html.twig' %}
+        <div>
+            <div class="flex-between">
+                <div>
+                    <h2>Eletro domésticos</h2>
+                </div>
+                <div>
+                    <button class="btn-cad" onclick="navigateTo('homeappliances_form')">Cadastrar</button>
+                </div>
+            </div>
+            {% if message is not null %}
+                <div class="message-class" style="margin-top: 2rem">
+                    <h5>{{ message }}</h5>
+                    </div>
+            {% endif %}
+            <div class="filter-table">
+                <form action="{{path('homeappliances_filter')}}" method="POST">
+                        <div>
+                            <input name="nome" type="text" placeholder="Digite o nome do eletro doméstico" />
+                        </div>
+                        <div>
+                            <input name="preco" type="text" placeholder="Digite o preço do eletro doméstico" />
+                        </div>
+                        <div class="flex-btns">
+                            <button type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i> Buscar
+                        </button>
+                        <button type="button" onclick="navigateTo('homeappliances')">
+                            <i class="fa-solid fa-trash"></i> Limpar
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="content">
+                <div class="table-class">
+                    <table>
+                        <thead>
+                                <tr>
+                                    <th>ID<th>
+                                    <th>imagem<th>
+                                    <th>nome<th>
+                                    <th>preço</th>
+                                    <th>ações<th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for homeAppliance in homeAppliances %}
+                                    <tr>
+                                        <td>{{ homeAppliance.id }}<td>
+                                        <td>
+                                            <img 
+                                                src="{{ asset('images/homeAppliances_images/' ~ homeAppliance.imagem) }}"
+                                                alt="{{ homeAppliance.nome }}"
+                                            >
+                                        <td>
+                                        <td>{{ homeAppliance.nome }}<td>
+                                        <td>R$ {{ homeAppliance.preco|number_format(2, ',', '.') }}</td>
+                                        <td>
+                                            <a href="{{ path('homeAppliance_edit', {'id': homeAppliance.id}) }}">Editar</a>
+                                            <a href="{{ path('homeAppliance_delete', {'id': homeAppliance.id}) }}">Excluir</a>
+                                        <td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% if totalPages > 1 %}
+                            <div class="pagination">
+                                {% if page > 1 %}
+                                    <a class="arrow-class" href="{{ path('homeAppliance', {'page': page - 1}) }}">
+                                        <i class="fa-solid fa-angle-left"></i>
+                                    </a>
+                                {% endif %}
+                                {% for i in 1..totalPages %}
+                                    <a class="current-page" href="{{ path('homeAppliance', {'page': i}) }}">{{ i }}</a>
+                                {% endfor %}
+                                {% if page < totalPages %}
+                                    <a class="arrow-class" href="{{ path('homeAppliance', {'page': page + 1}) }}">
+                                        <i class="fa-solid fa-angle-right"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

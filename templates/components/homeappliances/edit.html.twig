@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %} Alimentos {% endblock %}
+{% block title %} Eletro domésticos {% endblock %}
 
 {% block body %}
     {% include 'components/header.html.twig' %}
@@ -9,13 +9,13 @@
         <div>
             <div class="flex-between">
                 <div>
-                    <h2>Editar {{ food.nome }}</h2>
+                    <h2>Editar {{ homeAppliance.nome }}</h2>
                 </div>
                 <div>
-                    <button class="btn-back" onclick="navigateTo('food')">Voltar</button>
+                    <button class="btn-back" onclick="navigateTo('homeAppliances')">Voltar</button>
                 </div>
             </div>
-            <form method="POST"  action="{{path('food_edit', {id: food.id})}}" enctype="multipart/form-data">
+            <form method="POST"  action="{{path('homeAppliance_edit', {id: homeAppliance.id})}}" enctype="multipart/form-data">
                 <div class="form-class">
                     <label for="update_photo" class="update_photo">Procurar imagem</label>
                     <input 
@@ -32,7 +32,7 @@
                         id="nome"
                         name="nome" 
                         type="text" 
-                        value="{{ food.nome }}"
+                        value="{{ homeAppliance.nome }}"
                     />
                 </div>
                 <div class="form-class">
@@ -41,7 +41,7 @@
                         id="preco"
                         name="preco" 
                         type="text" 
-                        value="{{ food.preco }}"
+                        value="{{ homeAppliance.preco }}"
                         oninput="moneyMask(this)"
                     />
                 </div>

@@ -11,19 +11,19 @@
         <div>
             <div class="flex-between">
                 <div>
-                <h2>Alimentos</h2>
+                    <h2>Alimentos</h2>
                 </div>
                 <div>
-                <button class="btn-cad" onclick="navigateTo('food_form')">Cadastrar</button>
+                    <button class="btn-cad" onclick="navigateTo('food_form')">Cadastrar</button>
+                </div>
             </div>
-        </div>
-        {% if message is not null %}
-                    <div class="message-class" style="margin-top: 2rem">
-                        <h5>{{ message }}</h5>
-                        </div>
-                {% endif %}
-                <div class="filter-table">
-                    <form action="{{path('food_filter')}}" method="POST">
+            {% if message is not null %}
+                <div class="message-class" style="margin-top: 2rem">
+                    <h5>{{ message }}</h5>
+                    </div>
+            {% endif %}
+            <div class="filter-table">
+                <form action="{{path('food_filter')}}" method="POST">
                         <div>
                             <input name="nome" type="text" placeholder="Digite o nome do alimento" />
                         </div>
