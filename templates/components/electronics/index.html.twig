@@ -4,8 +4,93 @@
 
 {% block body %}
     {% include 'components/header.html.twig' %}
-    {% include 'components/aside-dashboard.html.twig' %}
+
     <div class="container">
-        <div>Eletro eletrônicos</div>
+
+            {% include 'components/aside-dashboard.html.twig' %}
+        <div>
+            <div class="flex-between">
+                <div>
+                    <h2>Eletro eletrônicos</h2>
+                </div>
+                <div>
+                    <button class="btn-cad" onclick="navigateTo('electronics_form')">Cadastrar</button>
+                </div>
+            </div>
+            {% if message is not null %}
+                <div class="message-class" style="margin-top: 2rem">
+                    <h5>{{ message }}</h5>
+                    </div>
+            {% endif %}
+            <div class="filter-table">
+                <form action="{{path('electronics_filter')}}" method="POST">
+                        <div>
+                            <input name="nome" type="text" placeholder="Digite o nome do eletrônico" />
+                        </div>
+                        <div>
+                            <input name="preco" type="text" placeholder="Digite o preço do eletrônico" />
+                        </div>
+                        <div class="flex-btns">
+                            <button type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i> Buscar
+                        </button>
+                        <button type="button" onclick="navigateTo('electronics')">
+                            <i class="fa-solid fa-trash"></i> Limpar
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="content">
+                <div class="table-class">
+                    <table>
+                        <thead>
+                                <tr>
+                                    <th>ID<th>
+                                    <th>imagem<th>
+                                    <th>nome<th>
+                                    <th>preço</th>
+                                    <th>ações<th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for electronic in electronics %}
+                                    <tr>
+                                        <td>{{ electronic.id }}<td>
+                                        <td>
+                                            <img 
+                                                src="{{ asset('images/electronics_images/' ~ electronic.imagem) }}"
+                                                alt="{{ electronic.nome }}"
+                                            >
+                                        <td>
+                                        <td>{{ electronic.nome }}<td>
+                                        <td>R$ {{ electronic.preco|number_format(2, ',', '.') }}</td>
+                                        <td>
+                                            <a href="{{ path('electronics_edit', {'id': electronic.id}) }}">Editar</a>
+                                            <a href="{{ path('electronics_delete', {'id': electronic.id}) }}">Excluir</a>
+                                        <td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                        {% if totalPages > 1 %}
+                            <div class="pagination">
+                                {% if page > 1 %}
+                                    <a class="arrow-class" href="{{ path('food', {'page': page - 1}) }}">
+                                        <i class="fa-solid fa-angle-left"></i>
+                                    </a>
+                                {% endif %}
+                                {% for i in 1..totalPages %}
+                                    <a class="current-page" href="{{ path('food', {'page': i}) }}">{{ i }}</a>
+                                {% endfor %}
+                                {% if page < totalPages %}
+                                    <a class="arrow-class" href="{{ path('food', {'page': page + 1}) }}">
+                                        <i class="fa-solid fa-angle-right"></i>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                </div>
+            </div>
+        </div>
     </div>
 {% endblock %}

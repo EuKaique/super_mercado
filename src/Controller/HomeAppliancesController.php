@@ -47,7 +47,7 @@ class HomeAppliancesController extends AbstractController
             'message' => $this->get('session')->getFlashBag()->get('success')[0] ?? null
         ]);
     }
-        /**
+    /**
      * @Route("/homeappliances_filter", name="homeappliances_filter")
      */
     public function filter(Request $request, HomeappliancesRepository $homeappliancesRepository): Response
@@ -64,8 +64,8 @@ class HomeAppliancesController extends AbstractController
         $totalHomeappliances = $homeappliancesRepository->filterCount($nome, $preco);
         $totalPages = ceil($totalHomeappliances / $pageSize);
 
-        return $this->render('components/food/index.html.twig', [  
-            'controller_name' => 'FoodController',
+        return $this->render('components/homeappliances/index.html.twig', [  
+            'controller_name' => 'HomeAppliancesController',
             'homeAppliances' => $homeAppliances,
             'page' => $page,
             'totalPages' => $totalPages,
@@ -152,7 +152,7 @@ class HomeAppliancesController extends AbstractController
         }
     
         return $this->render('components/homeappliances/edit.html.twig', [
-            'controller_name' => 'FoodController',
+            'controller_name' => 'HomeAppliancesController',
             'homeAppliance' => $homeAppliance
         ]);
     }

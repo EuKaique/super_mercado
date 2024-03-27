@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 
-{% block title %} Eletro domésticos {% endblock %}
+{% block title %} Eletro eletrônicos {% endblock %}
 
 {% block body %}
     {% include 'components/header.html.twig' %}
@@ -9,13 +9,13 @@
         <div>
             <div class="flex-between">
                 <div>
-                    <h2>Cadastrar eletro doméstico</h2>
+                    <h2>Editar {{ electronics.nome }}</h2>
                 </div>
                 <div>
-                    <button class="btn-back" onclick="navigateTo('homeappliances')">Voltar</button>
+                    <button class="btn-back" onclick="navigateTo('electronics')">Voltar</button>
                 </div>
             </div>
-            <form method="POST"  action="{{path('homeappliances_store')}}" enctype="multipart/form-data">
+            <form method="POST"  action="{{path('electronics_edit', {id: electronics.id})}}" enctype="multipart/form-data">
                 <div class="form-class">
                     <label for="update_photo" class="update_photo">Procurar imagem</label>
                     <input 
@@ -23,11 +23,8 @@
                         name="add_image" 
                         type="file"
                         accept=".png, .jpg, .jpeg"
-                        maxlength="1048576"
-                        onchange="showLoading()" 
+                        maxlength="1048576" 
                     />
-                    <div id="loading" style="display: none;color: #5356FF;font-weight: 600">Carregando...</div>
-                    <div id="loading-finish" style="display: none;color: #416D19;font-weight: 600">Imagem carregada</div>
                 </div>
                 <div class="form-class">
                     <label for="nome">Nome:</label>
@@ -35,7 +32,7 @@
                         id="nome"
                         name="nome" 
                         type="text" 
-                        placeholder="Digite o nome do eletro doméstico"
+                        value="{{ electronics.nome }}"
                     />
                 </div>
                 <div class="form-class">
@@ -44,7 +41,7 @@
                         id="preco"
                         name="preco" 
                         type="text" 
-                        placeholder="Digite o preço do eletro doméstico"
+                        value="{{ electronics.preco }}"
                         oninput="moneyMask(this)"
                     />
                 </div>
@@ -52,17 +49,6 @@
                     <button type="submit">Salvar</button>
                 </div>
             </form>
-            <script>
-                function showLoading() {
-                    document.getElementById("loading").style.display = "block";
-
-                    setTimeout(function() {
-
-                        document.getElementById("loading").style.display = "none";
-                        document.getElementById("loading-finish").style.display = "block";
-                    }, 2400);
-                }
-            </script>
         </div>
     </div>
 {% endblock %}

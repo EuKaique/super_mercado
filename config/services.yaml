@@ -8,6 +8,7 @@ parameters:
     profile_images: '%kernel.project_dir%/public/images/profile_images'
     food_images: '%kernel.project_dir%/public/images/food_images'
     homeappliances_images: '%kernel.project_dir%/public/images/homeappliances_images'
+    electronics_images: '%kernel.project_dir%/public/images/electronics_images'
     app_name: 'Super Mercado'
 
 services:
